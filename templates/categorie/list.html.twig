@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container">
+        <h1>Liste:</h1>
+        <table border="2">
+            <tr>
+                <th> Indice </th>
+                <th> Categorie </th>
+                <th> Détails</th>
+            </tr>
+            {% set i =0 %}
+            {% for c,v in tab %}
+                {#si c est pairs#}
+                {%  if c is even %}
+                    <tr style="background-color: lightpink">
+                {% else %}
+                    <tr>
+                {% endif %}
+                <td>{{ c }}</td>
+                {#set v en majuscules#}
+                <td>{{ v|upper }}</td>
+                <td><a href="{{ path ('show', {'id':c }) }}">Show</a> </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+        <br>
+        Nous somme le: {{ "now"|date ('Y-m-d')}}
+        <br><hr>
+        <a href="{{ path ('index') }}">Retour</a>
+    </div>
+{% endblock %}
